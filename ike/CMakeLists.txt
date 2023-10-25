@@ -11,6 +11,10 @@ project( IKE )
 
 cmake_minimum_required( VERSION 2.4 )
 
+set(CMAKE_INSTALL_PREFIX "/usr/local")  
+include_directories(/opt/homebrew/opt/openssl/include)  # Path of Openssl homebrew install
+link_directories(/opt/homebrew/opt/openssl/lib)  # Path of Openssl homebrew install
+
 if( COMMAND cmake_policy )
 
 	cmake_policy( SET CMP0003 NEW )
@@ -41,22 +45,26 @@ subdirs(
 
 set(
 	SEARCH_INC
+	opt/homebrew/opt/openssl/include
 	/usr/local/include
 	/usr/include )
 
 set(
 	SEARCH_LIB
+	opt/homebrew/opt/openssl/lib
 	/usr/local/lib
 	/usr/lib )
 
 set(
 	SEARCH_BIN
+	opt/homebrew/opt/openssl/bin
 	/usr/local/bin
 	/usr/pkg/bin
 	/usr/bin )
 
 set(
 	SEARCH_SYS
+	opt/homebrew/opt/openssl/share
 	/usr/local
 	/usr/share
 	/usr )
@@ -68,7 +76,7 @@ set(
 if( APPLE )
 
 	set(
-		CMAKE_OSX_ARCHITECTURES "x86_64" )
+		CMAKE_OSX_ARCHITECTURES "arm64" )
 
 	set(
 		CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-deprecated-declarations" )
